@@ -1,0 +1,60 @@
+body {
+    padding:0;
+    margin:0;
+}
+
+html, body, #map{
+    height:100%;
+    width:100%;
+}
+
+h1 {
+    color:white;
+    background-color: #DA3F42;
+}
+
+h3 {
+    color:white;
+    background-color: #DA3F42;
+    font-size: medium;
+}
+
+button.btn {
+    background-color:white; 
+    color:#DA3F42; 
+    width:100%;
+}
+
+.fa {
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+}
+
+.fa:hover {
+    opacity: 0.9;
+    color: lightgray
+}
+
+.float {
+    position: fixed;
+    width: 75px;
+    height: 75px;
+    bottom: 15%;
+    right: 40px;
+    background-color: #DA3F42;
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 1;
+}
+
+iframe {
+    padding:0;
+    margin:0;
+    height:100%;
+    width:100%;
+}
