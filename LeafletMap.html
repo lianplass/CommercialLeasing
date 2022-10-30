@@ -14,18 +14,58 @@
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="css/mainstyles.css">
+    <!-- Importing GeoJSON Layers -->
+    <script src="data/Advisory_Neighborhood_Commissions_from_2023.geojson"></script>
+    <script src="data/anc_fp_2022-10-29.geojson"></script>
+    <script src="data/anc1a_zoning_2022-10-29.geojson"></script>
+    <script src="data/anc1a.geojson"></script>
 </head>
 <body>
 <div id="map"></div>
 <script>
 
-	const map = L.map('map').setView([38.93062305868794, -77.02797927116481], 16);
+// Initializing Map
+	const map = L.map('map').setView([38.92974908370263, -77.03093695440273], 15);
 
-	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		maxZoom: 19,
-		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-	}).addTo(map);
+// Basemap
+    var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+	maxZoom: 16
+}).addTo(map);
 
+// Map Layers
+
+    var anc1a_zoning = L.geoJSON(anc1a_zoning);
+    anc1a_zoning.addTo(map);
+
+    var anc_all = L.geoJSON(anc_all, {
+        color: 'gray',
+        fillOpacity: '0'
+    }
+    );
+    anc_all.addTo(map);
+
+    var anc1a_fp = L.geoJSON(anc1a_fp, {
+        color: '#DA3F42',
+        weight: '0'
+    }
+    );
+    anc1a_fp.addTo(map);
+
+    var anc1a_bounds = L.geoJSON(anc1a_bounds, {
+        color: '#DA3F42',
+        fillOpacity: '0',
+        weight: '5'
+        
+    }
+    );
+    anc1a_bounds.addTo(map);
+
+
+</script>
+<script>
+    // var anc_all = L.geoJSON(anc_all);
+    // anc_all.addTo(map)
 </script>
 
 
