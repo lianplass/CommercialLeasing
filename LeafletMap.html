@@ -25,29 +25,73 @@
 <script>
 
 // Initializing Map
-	const map = L.map('map').setView([38.92974908370263, -77.03093695440273], 15);
+	const map = L.map('map').setView([38.92974908370263, -77.03093695440273], 15, 15);
 
 // Basemap
-    var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-	maxZoom: 16
+//     var Esri_WorldGrayCanvas = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+// 	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+// 	maxZoom: 16
+// }).addTo(map);
+
+var CartoDB_DarkMatter = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+	subdomains: 'abcd',
+	maxZoom: 20
 }).addTo(map);
 
 // Map Layers
+function getColor(d) {
+    return d == 'CG-1'    ? 'white' :
+           d == 'CG-2'    ? 'white' :
+           d == 'CG-3'    ? 'white' :
+           d == 'CG-4'    ? 'white' :
+           d == 'CG-5'    ? 'white' :
+           d == 'CG-6'    ? 'white' :
+           d == 'CG-7'    ? 'white' :
+           d == 'MU-1'    ? 'red' :
+           d == 'MU-2'    ? 'red' :
+           d == 'MU-3'    ? 'red' :
+           d == 'MU-4'    ? 'red' :
+           d == 'MU-5'    ? 'red' :
+           d == 'MU-6'    ? 'red' :
+           d == 'MU-7'    ? 'red' :
+           d == 'MU-8'    ? 'red' :
+           d == 'MU-9'    ? 'red' :
+           d == 'MU-10'   ? 'red' :
+           d == 'MU-11'   ? 'red' :
+           d == 'MU-12'   ? 'red' :
+           d == 'MU-13'   ? 'red' :
+           d == 'MU-14'   ? 'red' :
+           d == 'MU-15'   ? 'red' :
+           d == 'MU-16'   ? 'red' :
+           d == 'MU-17'   ? 'red' :
+           d == 'MU-18'   ? 'red' :
+           d == 'MU-19'   ? 'red' :
+                            'white';
+}
 
-    var anc1a_zoning = L.geoJSON(anc1a_zoning);
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.ZONING),
+        weight: 0,
+        opacity: .35,
+    }
+}
+    var anc1a_zoning = L.geoJSON(anc1a_zoning, {style: style});
     anc1a_zoning.addTo(map);
 
     var anc_all = L.geoJSON(anc_all, {
         color: 'gray',
-        fillOpacity: '0'
+        fillOpacity: '0',
+        weight:'1',
     }
     );
     anc_all.addTo(map);
 
     var anc1a_fp = L.geoJSON(anc1a_fp, {
-        color: '#DA3F42',
-        weight: '0'
+        color: 'white',
+        weight: '0',
+        fillOpacity: .75,
     }
     );
     anc1a_fp.addTo(map);
@@ -55,12 +99,11 @@
     var anc1a_bounds = L.geoJSON(anc1a_bounds, {
         color: '#DA3F42',
         fillOpacity: '0',
-        weight: '5'
+        weight: '3',
         
     }
     );
     anc1a_bounds.addTo(map);
-
 
 </script>
 <script>
